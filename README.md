@@ -14,6 +14,20 @@ A comprehensive multi-chain crypto wallet with MetaMask integration. Features re
 
 [View detailed documentation →](./apps/crypto-wallet/README.md)
 
+### [`apps/simple-dex`](./apps/simple-dex)
+
+A modern decentralized exchange (DEX) built with React 19 and Web3 technologies. Features token swapping, liquidity pools, real-time price updates, and smart contract integration.
+
+**Key Features:**
+
+- 🔄 Uniswap-style token swapping with price impact analysis
+- 💧 Liquidity provision and LP token management
+- 📈 Real-time price charts and market data
+- 🌐 Multi-chain support (Ethereum, Polygon, Arbitrum, Optimism)
+- 🎨 Modern UI with shadcn/ui components
+
+[View detailed documentation →](./apps/simple-dex/README.md)
+
 ### Installation
 
 ```bash
@@ -25,13 +39,27 @@ pnpm install
 
 ```bash
 # Run crypto wallet app
+pnpm dev
+# or
 pnpm --filter crypto-wallet dev
 
-# Build all projects
-pnpm build
+# Run simple DEX app
+pnpm dev:dex
+# or
+pnpm --filter simple-dex dev
 
-# Build specific project
-pnpm --filter crypto-wallet build
+# Run all apps in parallel
+pnpm dev:all
+
+# Build all projects
+pnpm build:all
+
+# Build specific projects
+pnpm build        # crypto-wallet
+pnpm build:dex    # simple-dex
+
+# Preview built DEX app
+pnpm preview:dex
 
 # Lint all projects
 pnpm lint
@@ -41,6 +69,7 @@ pnpm format
 
 # Install dependencies for specific project
 pnpm --filter crypto-wallet add <package-name>
+pnpm --filter simple-dex add <package-name>
 ```
 
 ## Project Structure
@@ -48,17 +77,29 @@ pnpm --filter crypto-wallet add <package-name>
 ```
 blockchain-playground/
 ├── apps/
-│   └── crypto-wallet/          # Multi-chain crypto wallet
+│   ├── crypto-wallet/          # Multi-chain crypto wallet
+│   │   ├── src/
+│   │   │   ├── components/     # React components
+│   │   │   ├── hooks/          # Custom hooks
+│   │   │   ├── lib/            # Utilities and configurations
+│   │   │   ├── stores/         # State management
+│   │   │   └── types/          # TypeScript definitions
+│   │   ├── package.json
+│   │   └── vite.config.ts
+│   └── simple-dex/             # Decentralized exchange
 │       ├── src/
-│       │   ├── components/     # React components
-│       │   ├── hooks/          # Custom hooks
-│       │   ├── lib/            # Utilities and configurations
-│       │   ├── stores/         # State management
-│       │   └── types/          # TypeScript definitions
+│       │   ├── components/     # DEX components
+│       │   │   └── ui/         # shadcn/ui components
+│       │   ├── lib/            # Utilities and Web3 configs
+│       │   ├── App.tsx         # Main application
+│       │   └── main.tsx        # Entry point
 │       ├── package.json
-│       └── vite.config.ts
+│       ├── vite.config.ts
+│       └── tailwind.config.js
 ├── packages/                   # Shared packages (future)
 ├── .github/workflows/          # CI/CD workflows
+│   ├── deploy-crypto-wallet.yml
+│   └── deploy-simple-dex.yml
 ├── biome.json                  # Biome configuration
 ├── pnpm-workspace.yaml         # pnpm workspace config
 └── package.json                # Root package.json

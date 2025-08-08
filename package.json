@@ -8,8 +8,14 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm --filter crypto-wallet dev",
-    "build": "pnpm --filter crypto-wallet build",
+    "dev:wallet": "pnpm --filter crypto-wallet dev",
+    "dev:dex": "pnpm --filter simple-dex dev",
+    "dev:all": "pnpm -r --parallel dev",
+    "build:wallet": "pnpm --filter crypto-wallet build",
+    "build:dex": "pnpm --filter simple-dex build",
+    "build:all": "pnpm -r build",
+    "preview:wallet": "pnpm --filter crypto-wallet preview",
+    "preview:dex": "pnpm --filter simple-dex preview",
     "lint": "biome check .",
     "lint:fix": "biome check --apply .",
     "format": "biome format --write .",
