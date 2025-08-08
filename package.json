@@ -12,21 +12,27 @@
     "dev:dex": "pnpm --filter simple-dex dev",
     "dev:nft": "pnpm --filter nft-marketplace dev",
     "dev:all": "pnpm -r --parallel dev",
+    "dev:ui": "pnpm --filter @blockchain-playground/ui dev",
+    "build:ui": "pnpm --filter @blockchain-playground/ui build",
     "build:wallet": "pnpm --filter crypto-wallet build",
     "build:dex": "pnpm --filter simple-dex build",
     "build:nft": "pnpm --filter nft-marketplace build",
+    "build:apps": "pnpm --filter './apps/*' build",
     "build:all": "pnpm -r build",
     "preview:wallet": "pnpm --filter crypto-wallet preview",
     "preview:dex": "pnpm --filter simple-dex preview",
     "preview:nft": "pnpm --filter nft-marketplace preview",
+    "typecheck": "pnpm -r typecheck",
+    "typecheck:ui": "pnpm --filter @blockchain-playground/ui typecheck",
     "lint": "biome check .",
     "lint:fix": "biome check --apply .",
     "format": "biome format --write .",
-    "clean": "pnpm -r clean"
+    "clean": "pnpm -r clean",
+    "clean:ui": "pnpm --filter @blockchain-playground/ui clean"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.7.1",
-    "typescript": "^5.4.5"
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=20.0.0",

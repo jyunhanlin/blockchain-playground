@@ -1,6 +1,5 @@
 import { NFTGallery } from '@/components/nft/NFTGallery';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, Button } from '@blockchain-playground/ui';
 import { TrendingUp, Users, Palette, ShoppingBag } from 'lucide-react';
 import type { NFT } from '@/types';
 

@@ -1,6 +1,5 @@
 import type { NFT } from '@/types';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, Button } from '@blockchain-playground/ui';
 import { formatPrice, formatAddress } from '@/lib/utils';
 import { Heart, ShoppingCart, Clock } from 'lucide-react';
 import { useState } from 'react';

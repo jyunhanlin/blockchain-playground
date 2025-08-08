@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@blockchain-playground/ui';
 import { getChainConfig } from '@/lib/chains';
 import { formatBalance, formatCurrency } from '@/lib/utils';
 import { Coins } from 'lucide-react';

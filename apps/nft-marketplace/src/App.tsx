@@ -6,7 +6,7 @@ import { WalletConnect } from './components/WalletConnect';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { Create } from './pages/Create';
-import { Button } from './components/ui/button';
+import { Button } from '@blockchain-playground/ui';
 import { Palette, User, Plus, Home as HomeIcon, Search } from 'lucide-react';
 import { useState } from 'react';
 

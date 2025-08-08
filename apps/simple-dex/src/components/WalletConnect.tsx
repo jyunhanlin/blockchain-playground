@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Button, Card } from '@blockchain-playground/ui';
 import { getChainName } from '@/lib/chains';
 import { formatAddress } from '@/lib/utils';
 import { ConnectButton } from '@rainbow-me/rainbowkit';

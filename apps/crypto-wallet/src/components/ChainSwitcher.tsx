@@ -1,5 +1,11 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@blockchain-playground/ui';
 import { supportedChains } from '@/lib/chains';
 import { getChainConfig } from '@/lib/chains';
 import { Network } from 'lucide-react';

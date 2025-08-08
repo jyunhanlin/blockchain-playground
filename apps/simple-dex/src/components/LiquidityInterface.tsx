@@ -1,16 +1,24 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Input,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@blockchain-playground/ui';
 import { type Token, getTokensForChain } from '@/lib/chains';
-import { cn, formatEther, parseEther } from '@/lib/utils';
+import { formatEther, parseEther } from '@/lib/utils';
 import { Info, Minus, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useAccount, useChainId } from 'wagmi';
 import { TokenSelect } from './TokenSelect';
 
 export function LiquidityInterface() {
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   const chainId = useChainId();
 
   const [tokenA, setTokenA] = useState<Token | null>(null);
@@ -23,7 +31,7 @@ export function LiquidityInterface() {
   const tokens = getTokensForChain(chainId);
 
   // Mock pool data
-  const [poolData, setPoolData] = useState({
+  const [poolData] = useState({
     reserve0: BigInt(1000000) * BigInt(10 ** 18),
     reserve1: BigInt(2000000) * BigInt(10 ** 6),
     totalSupply: BigInt(1414213) * BigInt(10 ** 18),
@@ -48,7 +56,7 @@ export function LiquidityInterface() {
 
     try {
       // Calculate ratio based on current pool reserves
-      const inputAmount = parseEther(amountA, tokenA.decimals);
+      // const inputAmount = parseEther(amountA, tokenA.decimals);
       const ratio = Number(poolData.reserve1) / Number(poolData.reserve0);
       const calculatedAmountB = (Number.parseFloat(amountA) * ratio).toFixed(6);
       setAmountB(calculatedAmountB);

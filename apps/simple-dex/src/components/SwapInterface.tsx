@@ -1,6 +1,4 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Button, Card, CardContent, CardHeader, CardTitle, Input } from '@blockchain-playground/ui';
 import { type Token, getTokensForChain } from '@/lib/chains';
 import {
   calculateOutputAmount,
@@ -16,14 +14,14 @@ import { PriceImpactDisplay } from './PriceImpactDisplay';
 import { TokenSelect } from './TokenSelect';
 
 export function SwapInterface() {
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   const chainId = useChainId();
 
   const [fromToken, setFromToken] = useState<Token | null>(null);
   const [toToken, setToToken] = useState<Token | null>(null);
   const [fromAmount, setFromAmount] = useState('');
   const [toAmount, setToAmount] = useState('');
-  const [slippage, setSlippage] = useState(0.5);
+  const [slippage] = useState(0.5);
   const [isLoading, setIsLoading] = useState(false);
 
   const tokens = getTokensForChain(chainId);

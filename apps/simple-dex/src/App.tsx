@@ -2,9 +2,17 @@ import { LiquidityInterface } from '@/components/LiquidityInterface';
 import { PriceChart } from '@/components/PriceChart';
 import { SwapInterface } from '@/components/SwapInterface';
 import { WalletConnect, WalletInfo } from '@/components/WalletConnect';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@blockchain-playground/ui';
 import { ArrowRightLeft, Droplets, Github, TrendingUp, Twitter } from 'lucide-react';
 import { useState } from 'react';
 

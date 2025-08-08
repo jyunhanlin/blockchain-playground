@@ -7,9 +7,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+  Input,
+  Button,
+} from '@blockchain-playground/ui';
 import { Search, Filter, Grid, List } from 'lucide-react';
 
 interface NFTGalleryProps {

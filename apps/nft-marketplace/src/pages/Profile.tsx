@@ -1,8 +1,16 @@
 import { useState, useMemo } from 'react';
 import { useAccount } from 'wagmi';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Button,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@blockchain-playground/ui';
 import { NFTGallery } from '@/components/nft/NFTGallery';
 import type { User, NFT } from '@/types';
 import { formatAddress } from '@/lib/utils';

@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@radix-ui/react-label';
+import { Card, CardContent, CardHeader, CardTitle, Button, Input } from '@blockchain-playground/ui';
+import { Label } from '@blockchain-playground/ui';
 import { Upload, Plus, X } from 'lucide-react';
 import type { NFTAttribute } from '@/types';
 

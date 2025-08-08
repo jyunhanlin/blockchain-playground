@@ -1,6 +1,4 @@
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Button, Card, Input } from '@blockchain-playground/ui';
 import type { Token } from '@/lib/chains';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';

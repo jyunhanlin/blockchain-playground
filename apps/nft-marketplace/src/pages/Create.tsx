@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { CreateNFT } from '@/components/nft/CreateNFT';
 import type { CreateNFTFormData } from '@/components/nft/CreateNFT';
 import { useAccount } from 'wagmi';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button, Card, CardContent, CardHeader, CardTitle } from '@blockchain-playground/ui';
 import { AlertCircle, CheckCircle } from 'lucide-react';
 
 export function Create() {
