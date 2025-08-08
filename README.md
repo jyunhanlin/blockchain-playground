@@ -1,6 +1,6 @@
 # Blockchain Playground
 
-A modern monorepo for blockchain applications built with cutting-edge Web3 technologies, React 19, and TypeScript.
+A modern monorepo for blockchain applications built with cutting-edge Web3 technologies, React 19, and TypeScript. Featuring a crypto wallet, DEX trading platform, and NFT marketplace.
 
 ## Overview
 
@@ -28,6 +28,22 @@ A modern decentralized exchange (DEX) built with React 19 and Web3 technologies.
 
 [View detailed documentation →](./apps/simple-dex/README.md)
 
+### [`apps/nft-marketplace`](./apps/nft-marketplace)
+
+A comprehensive NFT marketplace built with React 19 and modern Web3 technologies. Create, buy, sell, and discover unique digital art with decentralized storage and seamless wallet integration.
+
+**Key Features:**
+
+- 🎨 NFT Gallery with advanced search and filtering
+- 🔨 Create and mint NFTs with IPFS metadata storage
+- 🛒 Buy/sell functionality with instant transactions
+- 🏆 Auction system for premium NFTs
+- 👤 User profiles with collection management
+- 🌐 Multi-chain support (Ethereum, Polygon)
+- 📱 Responsive design with modern UI components
+
+[View detailed documentation →](./apps/nft-marketplace/README.md)
+
 ### Installation
 
 ```bash
@@ -48,6 +64,11 @@ pnpm dev:dex
 # or
 pnpm --filter simple-dex dev
 
+# Run NFT marketplace app
+pnpm dev:nft
+# or
+pnpm --filter nft-marketplace dev
+
 # Run all apps in parallel
 pnpm dev:all
 
@@ -57,9 +78,11 @@ pnpm build:all
 # Build specific projects
 pnpm build        # crypto-wallet
 pnpm build:dex    # simple-dex
+pnpm build:nft    # nft-marketplace
 
-# Preview built DEX app
-pnpm preview:dex
+# Preview built apps
+pnpm preview:dex  # simple-dex
+pnpm preview:nft  # nft-marketplace
 
 # Lint all projects
 pnpm lint
@@ -70,6 +93,7 @@ pnpm format
 # Install dependencies for specific project
 pnpm --filter crypto-wallet add <package-name>
 pnpm --filter simple-dex add <package-name>
+pnpm --filter nft-marketplace add <package-name>
 ```
 
 ## Project Structure
@@ -86,11 +110,24 @@ blockchain-playground/
 │   │   │   └── types/          # TypeScript definitions
 │   │   ├── package.json
 │   │   └── vite.config.ts
-│   └── simple-dex/             # Decentralized exchange
+│   ├── simple-dex/             # Decentralized exchange
+│   │   ├── src/
+│   │   │   ├── components/     # DEX components
+│   │   │   │   └── ui/         # shadcn/ui components
+│   │   │   ├── lib/            # Utilities and Web3 configs
+│   │   │   ├── App.tsx         # Main application
+│   │   │   └── main.tsx        # Entry point
+│   │   ├── package.json
+│   │   ├── vite.config.ts
+│   │   └── tailwind.config.js
+│   └── nft-marketplace/        # NFT marketplace
 │       ├── src/
-│       │   ├── components/     # DEX components
+│       │   ├── components/     # NFT components
+│       │   │   ├── nft/        # NFT-specific components
 │       │   │   └── ui/         # shadcn/ui components
-│       │   ├── lib/            # Utilities and Web3 configs
+│       │   ├── pages/          # Application pages
+│       │   ├── lib/            # IPFS and Web3 utilities
+│       │   ├── types/          # TypeScript definitions
 │       │   ├── App.tsx         # Main application
 │       │   └── main.tsx        # Entry point
 │       ├── package.json
@@ -99,7 +136,8 @@ blockchain-playground/
 ├── packages/                   # Shared packages (future)
 ├── .github/workflows/          # CI/CD workflows
 │   ├── deploy-crypto-wallet.yml
-│   └── deploy-simple-dex.yml
+│   ├── deploy-simple-dex.yml
+│   └── deploy-nft-marketplace.yml
 ├── biome.json                  # Biome configuration
 ├── pnpm-workspace.yaml         # pnpm workspace config
 └── package.json                # Root package.json

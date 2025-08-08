@@ -1,7 +1,7 @@
 {
   "name": "blockchain-playground",
   "version": "1.0.0",
-  "description": "A monorepo for blockchain applications",
+  "description": "A monorepo for blockchain applications including crypto wallet, DEX, and NFT marketplace",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -10,12 +10,15 @@
   "scripts": {
     "dev:wallet": "pnpm --filter crypto-wallet dev",
     "dev:dex": "pnpm --filter simple-dex dev",
+    "dev:nft": "pnpm --filter nft-marketplace dev",
     "dev:all": "pnpm -r --parallel dev",
     "build:wallet": "pnpm --filter crypto-wallet build",
     "build:dex": "pnpm --filter simple-dex build",
+    "build:nft": "pnpm --filter nft-marketplace build",
     "build:all": "pnpm -r build",
     "preview:wallet": "pnpm --filter crypto-wallet preview",
     "preview:dex": "pnpm --filter simple-dex preview",
+    "preview:nft": "pnpm --filter nft-marketplace preview",
     "lint": "biome check .",
     "lint:fix": "biome check --apply .",
     "format": "biome format --write .",
