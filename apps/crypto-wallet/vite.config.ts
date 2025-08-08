@@ -10,7 +10,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/blockchain-playground/' : '/',
+  base: '/crypto-wallet/',
   build: {
     outDir: 'dist',
     sourcemap: true,

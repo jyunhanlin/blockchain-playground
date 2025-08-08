@@ -10,14 +10,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/blockchain-playground/',
+  base: '/nft-marketplace/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-  },
-  server: {
-    port: 5173,
-    host: true,
   },
 });
