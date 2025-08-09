@@ -1,7 +1,3 @@
-import { LiquidityInterface } from '@/components/LiquidityInterface';
-import { PriceChart } from '@/components/PriceChart';
-import { SwapInterface } from '@/components/SwapInterface';
-import { WalletConnect, WalletInfo } from '@/components/WalletConnect';
 import {
   Button,
   Card,
@@ -15,6 +11,10 @@ import {
 } from '@blockchain-playground/ui';
 import { ArrowRightLeft, Droplets, Github, TrendingUp, Twitter } from 'lucide-react';
 import { useState } from 'react';
+import { LiquidityInterface } from '@/components/LiquidityInterface';
+import { PriceChart } from '@/components/PriceChart';
+import { SwapInterface } from '@/components/SwapInterface';
+import { WalletConnect, WalletInfo } from '@/components/WalletConnect';
 
 function App() {
   const [activeTab, setActiveTab] = useState('swap');

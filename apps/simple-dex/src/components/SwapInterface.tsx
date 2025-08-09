@@ -1,5 +1,8 @@
 import { Button, Card, CardContent, CardHeader, CardTitle, Input } from '@blockchain-playground/ui';
-import { type Token, getTokensForChain } from '@/lib/chains';
+import { ArrowUpDown, Settings } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useAccount, useChainId } from 'wagmi';
+import { getTokensForChain, type Token } from '@/lib/chains';
 import {
   calculateOutputAmount,
   calculatePriceImpact,
@@ -7,9 +10,6 @@ import {
   formatEther,
   parseEther,
 } from '@/lib/utils';
-import { ArrowUpDown, Settings } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { useAccount, useChainId } from 'wagmi';
 import { PriceImpactDisplay } from './PriceImpactDisplay';
 import { TokenSelect } from './TokenSelect';
 

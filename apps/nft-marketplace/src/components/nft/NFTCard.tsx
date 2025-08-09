@@ -1,8 +1,8 @@
-import type { NFT } from '@/types';
-import { Card, CardContent, CardFooter, Button } from '@blockchain-playground/ui';
-import { formatPrice, formatAddress } from '@/lib/utils';
-import { Heart, ShoppingCart, Clock } from 'lucide-react';
+import { Button, Card, CardContent, CardFooter } from '@blockchain-playground/ui';
+import { Clock, Heart, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
+import { formatAddress, formatPrice } from '@/lib/utils';
+import type { NFT } from '@/types';
 
 interface NFTCardProps {
   nft: NFT;

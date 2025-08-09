@@ -1,6 +1,6 @@
-import { http, createConfig } from 'wagmi';
-import { sepolia, polygon } from './chains';
-import { metaMask, walletConnect, coinbaseWallet } from '@wagmi/connectors';
+import { coinbaseWallet, metaMask, walletConnect } from '@wagmi/connectors';
+import { createConfig, http } from 'wagmi';
+import { polygon, sepolia } from './chains';
 
 const projectId = 'your-wallet-connect-project-id';
 

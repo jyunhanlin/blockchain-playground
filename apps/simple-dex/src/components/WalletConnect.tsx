@@ -1,9 +1,9 @@
 import { Button, Card } from '@blockchain-playground/ui';
-import { getChainName } from '@/lib/chains';
-import { formatAddress } from '@/lib/utils';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ChevronDown, Wallet } from 'lucide-react';
 import { useAccount, useBalance, useChainId } from 'wagmi';
+import { getChainName } from '@/lib/chains';
+import { formatAddress } from '@/lib/utils';
 
 export function WalletConnect() {
   return (

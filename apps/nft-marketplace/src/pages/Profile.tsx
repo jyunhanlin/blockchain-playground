@@ -1,20 +1,20 @@
-import { useState, useMemo } from 'react';
-import { useAccount } from 'wagmi';
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  Button,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@blockchain-playground/ui';
+import { Check, Copy, Edit, ExternalLink, Globe, Twitter } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { useAccount } from 'wagmi';
 import { NFTGallery } from '@/components/nft/NFTGallery';
-import type { User, NFT } from '@/types';
 import { formatAddress } from '@/lib/utils';
-import { Edit, ExternalLink, Twitter, Globe, Copy, Check } from 'lucide-react';
+import type { NFT, User } from '@/types';
 
 // Mock user data
 const mockUser: User = {

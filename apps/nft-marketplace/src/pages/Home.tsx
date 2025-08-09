@@ -1,6 +1,6 @@
+import { Button, Card, CardContent, CardHeader, CardTitle } from '@blockchain-playground/ui';
+import { Palette, ShoppingBag, TrendingUp, Users } from 'lucide-react';
 import { NFTGallery } from '@/components/nft/NFTGallery';
-import { Card, CardContent, CardHeader, CardTitle, Button } from '@blockchain-playground/ui';
-import { TrendingUp, Users, Palette, ShoppingBag } from 'lucide-react';
 import type { NFT } from '@/types';
 
 // Mock data for demonstration

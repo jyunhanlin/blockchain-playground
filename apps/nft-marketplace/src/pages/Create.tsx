@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { CreateNFT } from '@/components/nft/CreateNFT';
-import type { CreateNFTFormData } from '@/components/nft/CreateNFT';
-import { useAccount } from 'wagmi';
 import { Button, Card, CardContent, CardHeader, CardTitle } from '@blockchain-playground/ui';
 import { AlertCircle, CheckCircle } from 'lucide-react';
+import { useState } from 'react';
+import { useAccount } from 'wagmi';
+import type { CreateNFTFormData } from '@/components/nft/CreateNFT';
+import { CreateNFT } from '@/components/nft/CreateNFT';
 
 export function Create() {
   const { isConnected } = useAccount();

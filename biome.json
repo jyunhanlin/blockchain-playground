@@ -1,7 +1,12 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.7.1/schema.json",
-  "organizeImports": {
-    "enabled": true
+  "$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
   },
   "linter": {
     "enabled": true,
@@ -15,14 +20,6 @@
       }
     }
   },
-  "formatter": {
-    "enabled": true,
-    "formatWithErrors": false,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 100,
-    "lineEnding": "lf"
-  },
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
@@ -31,8 +28,20 @@
       "semicolons": "always"
     }
   },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
   "files": {
-    "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-    "ignore": ["**/node_modules/**", "**/dist/**", "**/build/**"]
+    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+    "ignoreUnknown": false
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
   }
 }

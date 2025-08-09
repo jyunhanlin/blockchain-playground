@@ -1,6 +1,6 @@
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { Button } from '@blockchain-playground/ui';
-import { Wallet, LogOut } from 'lucide-react';
+import { LogOut, Wallet } from 'lucide-react';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { formatAddress } from '@/lib/utils';
 
 export function WalletConnect() {

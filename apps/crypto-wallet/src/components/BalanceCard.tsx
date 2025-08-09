@@ -5,10 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@blockchain-playground/ui';
-import { getChainConfig } from '@/lib/chains';
-import { formatBalance, formatCurrency } from '@/lib/utils';
 import { Coins } from 'lucide-react';
 import { useAccount, useBalance, useChainId } from 'wagmi';
+import { getChainConfig } from '@/lib/chains';
+import { formatBalance, formatCurrency } from '@/lib/utils';
 
 export function BalanceCard() {
   const { address } = useAccount();

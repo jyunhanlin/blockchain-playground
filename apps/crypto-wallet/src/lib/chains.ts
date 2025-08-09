@@ -1,5 +1,5 @@
-import { mainnet, polygon, sepolia } from 'wagmi/chains';
 import type { Chain } from 'wagmi/chains';
+import { mainnet, polygon, sepolia } from 'wagmi/chains';
 
 export const supportedChains: Chain[] = [mainnet, polygon, sepolia];
 

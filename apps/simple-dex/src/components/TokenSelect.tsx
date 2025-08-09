@@ -1,8 +1,8 @@
 import { Button, Card, Input } from '@blockchain-playground/ui';
-import type { Token } from '@/lib/chains';
-import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import type { Token } from '@/lib/chains';
+import { cn } from '@/lib/utils';
 
 interface TokenSelectProps {
   tokens: Token[];

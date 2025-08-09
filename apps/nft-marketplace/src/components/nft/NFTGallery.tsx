@@ -1,16 +1,16 @@
-import type { NFT } from '@/types';
-import { NFTCard } from './NFTCard';
-import { useState, useMemo } from 'react';
 import {
+  Button,
+  Input,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Input,
-  Button,
 } from '@blockchain-playground/ui';
-import { Search, Filter, Grid, List } from 'lucide-react';
+import { Filter, Grid, List, Search } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import type { NFT } from '@/types';
+import { NFTCard } from './NFTCard';
 
 interface NFTGalleryProps {
   nfts: NFT[];

@@ -1,7 +1,14 @@
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Input,
+  Label,
+} from '@blockchain-playground/ui';
+import { Plus, Upload, X } from 'lucide-react';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, Button, Input } from '@blockchain-playground/ui';
-import { Label } from '@blockchain-playground/ui';
-import { Upload, Plus, X } from 'lucide-react';
 import type { NFTAttribute } from '@/types';
 
 interface CreateNFTProps {

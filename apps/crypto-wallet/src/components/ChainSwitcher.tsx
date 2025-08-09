@@ -6,10 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@blockchain-playground/ui';
-import { supportedChains } from '@/lib/chains';
-import { getChainConfig } from '@/lib/chains';
 import { Network } from 'lucide-react';
 import { useChainId, useSwitchChain } from 'wagmi';
+import { getChainConfig, supportedChains } from '@/lib/chains';
 
 export function ChainSwitcher() {
   const chainId = useChainId();

@@ -7,12 +7,12 @@ import {
   CardTitle,
   Input,
 } from '@blockchain-playground/ui';
-import { formatBalance } from '@/lib/utils';
 import { Loader2, Send } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { isAddress, parseEther } from 'viem';
 import { useAccount, useBalance, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
+import { formatBalance } from '@/lib/utils';
 
 export function TransferForm() {
   const { address } = useAccount();

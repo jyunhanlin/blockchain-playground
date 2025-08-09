@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { WagmiProvider } from 'wagmi';
+import { Button } from '@blockchain-playground/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { config } from './lib/wagmi';
+import { Home as HomeIcon, Palette, Plus, Search, User } from 'lucide-react';
+import { useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { WagmiProvider } from 'wagmi';
 import { WalletConnect } from './components/WalletConnect';
+import { config } from './lib/wagmi';
+import { Create } from './pages/Create';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
-import { Create } from './pages/Create';
-import { Button } from '@blockchain-playground/ui';
-import { Palette, User, Plus, Home as HomeIcon, Search } from 'lucide-react';
-import { useState } from 'react';
 
 const queryClient = new QueryClient();
 

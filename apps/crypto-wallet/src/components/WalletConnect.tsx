@@ -6,9 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@blockchain-playground/ui';
-import { formatAddress } from '@/lib/utils';
 import { LogOut, Wallet } from 'lucide-react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { formatAddress } from '@/lib/utils';
 
 export function WalletConnect() {
   const { address, isConnected } = useAccount();

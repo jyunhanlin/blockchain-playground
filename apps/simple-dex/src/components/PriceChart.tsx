@@ -1,5 +1,4 @@
 import { Button, Card, CardContent, CardHeader, CardTitle } from '@blockchain-playground/ui';
-import { cn } from '@/lib/utils';
 import { TrendingDown, TrendingUp } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import {
@@ -11,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { cn } from '@/lib/utils';
 
 interface PriceData {
   timestamp: number;

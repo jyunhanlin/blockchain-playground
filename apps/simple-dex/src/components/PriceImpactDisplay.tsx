@@ -1,6 +1,6 @@
+import { AlertTriangle, Info } from 'lucide-react';
 import type { Token } from '@/lib/chains';
 import { cn } from '@/lib/utils';
-import { AlertTriangle, Info } from 'lucide-react';
 
 interface PriceImpactDisplayProps {
   priceImpact: number;

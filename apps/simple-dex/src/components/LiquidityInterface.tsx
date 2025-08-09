@@ -10,11 +10,11 @@ import {
   TabsList,
   TabsTrigger,
 } from '@blockchain-playground/ui';
-import { type Token, getTokensForChain } from '@/lib/chains';
-import { formatEther, parseEther } from '@/lib/utils';
 import { Info, Minus, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useAccount, useChainId } from 'wagmi';
+import { getTokensForChain, type Token } from '@/lib/chains';
+import { formatEther, parseEther } from '@/lib/utils';
 import { TokenSelect } from './TokenSelect';
 
 export function LiquidityInterface() {

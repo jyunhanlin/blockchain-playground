@@ -1,4 +1,4 @@
-import { http, createConfig } from 'wagmi';
+import { createConfig, http } from 'wagmi';
 import { injected, metaMask } from 'wagmi/connectors';
 import { supportedChains } from './chains';
 
