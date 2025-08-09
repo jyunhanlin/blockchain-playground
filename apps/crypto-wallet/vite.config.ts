@@ -11,8 +11,4 @@ export default defineConfig({
     },
   },
   base: '/crypto-wallet/',
-  build: {
-    outDir: 'dist',
-    sourcemap: true,
-  },
 });
