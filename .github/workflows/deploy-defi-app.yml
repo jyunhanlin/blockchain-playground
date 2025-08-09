@@ -1,0 +1,192 @@
+name: Deploy DeFi Yield Aggregator
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/defi-yield-aggregator/**'
+      - 'packages/ui/**'
+      - '.github/workflows/deploy-defi-app.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/defi-yield-aggregator/**'
+      - 'packages/ui/**'
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      defi-changed: ${{ steps.changes.outputs.defi }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes
+        id: changes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execSync } = require('child_process');
+
+            // Get list of changed files
+            let changedFiles = [];
+
+            if (context.eventName === 'pull_request') {
+              const output = execSync(`git diff --name-only origin/${context.payload.pull_request.base.ref}...HEAD`).toString();
+              changedFiles = output.split('\n').filter(file => file.trim() !== '');
+            } else {
+              const output = execSync(`git diff --name-only HEAD~1 HEAD`).toString();
+              changedFiles = output.split('\n').filter(file => file.trim() !== '');
+            }
+
+            console.log('Changed files:', changedFiles);
+
+            // Check if DeFi app or UI package files have changed
+            const defiChanged = changedFiles.some(file => 
+              file.startsWith('apps/defi-yield-aggregator/') || 
+              file.startsWith('packages/ui/') ||
+              file.includes('deploy-defi-app.yml')
+            );
+
+            core.setOutput('defi', defiChanged);
+            console.log('DeFi app changed:', defiChanged);
+
+  build-and-deploy:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.defi-changed == 'true'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}defi-yield-aggregator/
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.14.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build UI package
+        run: pnpm build:ui
+
+      - name: Build DeFi Yield Aggregator
+        run: pnpm build:defi
+        env:
+          NODE_ENV: production
+
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v4
+
+      - name: Create deployment directory
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p deployment/defi-yield-aggregator
+          cp -r apps/defi-yield-aggregator/dist/* deployment/defi-yield-aggregator/
+
+          # Create index.html that redirects to the app if it doesn't exist at root
+          if [ ! -f deployment/index.html ]; then
+            cat > deployment/index.html << EOF
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Blockchain Playground</title>
+            <meta http-equiv="refresh" content="0; url=./defi-yield-aggregator/">
+            <link rel="canonical" href="./defi-yield-aggregator/">
+          </head>
+          <body>
+            <p>Redirecting to <a href="./defi-yield-aggregator/">DeFi Yield Aggregator</a>...</p>
+          </body>
+          </html>
+          EOF
+          fi
+
+      - name: Upload artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './deployment'
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `## 🚀 DeFi Yield Aggregator Build Results
+
+            ✅ **Build Status**: Successful
+            📦 **App**: DeFi Yield Aggregator
+            🔨 **Built with**: React 19, TypeScript, Tailwind CSS
+
+            ### Features Included:
+            - 📊 **Yield Rate Display**: Real-time APY/APR tracking across protocols
+            - 💼 **Portfolio Tracking**: Monitor your DeFi investments
+            - 🤖 **Auto-Compound**: Automated yield compounding calculations
+            - ⚠️ **Risk Assessment**: Protocol risk scoring and indicators
+            - 📈 **Data Visualization**: Interactive charts and analytics
+
+            ### Technical Stack:
+            - React 19 with TypeScript
+            - Zustand for state management
+            - Recharts for data visualization
+            - Tailwind CSS + shadcn/ui components
+            - Wagmi for Web3 integration
+
+            The app will be automatically deployed to GitHub Pages when this PR is merged to main.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  notify-success:
+    needs: [detect-changes, build-and-deploy]
+    if: needs.detect-changes.outputs.defi-changed == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment Success Notification
+        uses: actions/github-script@v7
+        with:
+          script: |
+            console.log('🎉 DeFi Yield Aggregator has been successfully deployed to GitHub Pages!');
+            console.log('🔗 Access the app at: https://${{ github.repository_owner }}.github.io/blockchain-playground/defi-yield-aggregator/');
