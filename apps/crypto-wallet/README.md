@@ -11,13 +11,6 @@ A comprehensive multi-chain crypto wallet with MetaMask integration, featuring r
 - **📱 Responsive Design**: Modern UI built with shadcn/ui and Tailwind CSS
 - **⚡ Fast Development**: Built with Vite and React 19
 
-## Tech Stack
-
-- **Frontend**: React 19, TypeScript, Vite
-- **Web3**: Wagmi v2, Viem, Ethers.js
-- **UI**: shadcn/ui, Tailwind CSS, Lucide React
-- **State Management**: TanStack Query, Zustand
-
 ## Quick Start
 
 ### Development
@@ -100,38 +93,3 @@ crypto-wallet/
 - **Polygon Mainnet** (Chain ID: 137)
 - **Sepolia Testnet** (Chain ID: 11155111)
 - **Mumbai Testnet** (Chain ID: 80001)
-
-## Development Notes
-
-- Uses React 19 with the latest features and patterns
-- Wagmi v2 provides type-safe Web3 interactions
-- All components are built with accessibility in mind
-- The UI follows modern design principles
-- Built with Vite for fast development and hot reloading
-
-## Deployment
-
-The app is automatically deployed via GitHub Actions when changes are made to the `apps/crypto-wallet/` directory. The built files are deployed to GitHub Pages.
-
-### Manual Build
-
-```bash
-# Build for production
-pnpm build
-
-# The built files will be in dist/
-```
-
-## Contributing
-
-When contributing to this app:
-
-1. Follow the existing code style and patterns
-2. Ensure all components are accessible
-3. Add proper TypeScript types
-4. Test on multiple chains and wallets
-5. Update documentation as needed
-
-## License
-
-This project is part of the blockchain-playground monorepo and is licensed under the MIT License.

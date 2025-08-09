@@ -13,33 +13,11 @@ A modern, full-featured NFT marketplace built with React 19, TypeScript, and Web
 - 📱 **Responsive Design** - Works seamlessly on all devices
 - 🔗 **Wallet Integration** - Connect with MetaMask, WalletConnect, and more
 
-## Tech Stack
-
-- **Frontend**: React 19, TypeScript, Vite
-- **Styling**: Tailwind CSS, shadcn/ui
-- **Web3**: Wagmi, Viem, Ethers.js
-- **Storage**: IPFS (Infura)
-- **State Management**: Zustand
-- **Routing**: React Router DOM
-
 ## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- pnpm (or npm/yarn)
-- MetaMask or compatible wallet
 
 ### Installation
 
-1. Clone the repository:
-
-```bash
-git clone <repository-url>
-cd blockchain-playground/apps/nft-marketplace
-```
-
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 pnpm install
@@ -143,26 +121,6 @@ The marketplace is designed to work with ERC-721 NFT contracts. Key functions in
 - `setApprovalForAll()` - Approve marketplace for transfers
 - `transferFrom()` - Transfer NFT ownership
 - `tokenURI()` - Get NFT metadata URI
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
-
-## Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Issues](https://github.com/your-repo/issues) page
-2. Create a new issue with detailed information
-3. Join our Discord community for support
 
 ## Roadmap
 

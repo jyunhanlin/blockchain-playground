@@ -222,10 +222,6 @@ function App() {
               </ul>
             </div>
           </div>
-
-          <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 Simple DEX. Built with React 19 and wagmi.</p>
-          </div>
         </div>
       </footer>
     </div>
