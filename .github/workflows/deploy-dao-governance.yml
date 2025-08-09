@@ -1,0 +1,138 @@
+name: Deploy DAO Governance to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/dao-governance/**'
+      - 'packages/ui/**'
+      - '.github/workflows/deploy-dao-governance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'dao-governance-pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Check for changes
+        id: changes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execSync } = require('child_process');
+
+            // Get the list of changed files
+            const changedFiles = execSync('git diff --name-only HEAD~1 HEAD', { encoding: 'utf8' }).trim().split('\n');
+
+            console.log('Changed files:', changedFiles);
+
+            // Check if DAO governance app or UI package files changed
+            const daoChanged = changedFiles.some(file => 
+              file.startsWith('apps/dao-governance/') || 
+              file.startsWith('packages/ui/') ||
+              file.includes('deploy-dao-governance.yml')
+            );
+
+            console.log('DAO governance changed:', daoChanged);
+
+            return daoChanged;
+
+      - name: Install dependencies
+        if: steps.changes.outputs.result == 'true' || github.event_name == 'workflow_dispatch'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build UI package
+        if: steps.changes.outputs.result == 'true' || github.event_name == 'workflow_dispatch'
+        run: pnpm build:ui
+
+      - name: Build DAO Governance app
+        if: steps.changes.outputs.result == 'true' || github.event_name == 'workflow_dispatch'
+        run: pnpm build:dao
+
+      - name: Setup Pages
+        if: steps.changes.outputs.result == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        if: steps.changes.outputs.result == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./apps/dao-governance/dist
+
+  deploy:
+    environment:
+      name: dao-governance
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: needs.build.steps.changes.outputs.result == 'true' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Add deployment comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Only add comment if this was triggered by a push event
+            if (context.eventName === 'push') {
+              const { owner, repo } = context.repo;
+              const sha = context.sha;
+              
+              // Find the commit's associated pull request
+              const { data: prs } = await github.rest.pulls.list({
+                owner,
+                repo,
+                state: 'open'
+              });
+              
+              const pr = prs.find(pr => pr.head.sha === sha);
+              
+              if (pr) {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: pr.number,
+                  body: `🚀 DAO Governance app has been deployed to GitHub Pages!\n\n📱 **Live Preview:** ${{ steps.deployment.outputs.page_url }}\n\n🔄 Deployment triggered by commit: ${sha.substring(0, 7)}`
+                });
+              }
+            }
+
+            console.log('DAO Governance deployed successfully to:', '${{ steps.deployment.outputs.page_url }}');

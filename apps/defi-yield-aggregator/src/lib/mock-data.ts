@@ -1,12 +1,12 @@
 import type {
   DeFiProtocol,
-  YieldPool,
+  HistoricalData,
+  Portfolio,
   Token,
   UserPosition,
-  Portfolio,
-  HistoricalData,
+  YieldPool,
 } from '@/types';
-import { ProtocolCategory, RiskLevel, AuditStatus, PoolStrategy } from '@/types';
+import { AuditStatus, PoolStrategy, ProtocolCategory, RiskLevel } from '@/types';
 
 // Mock tokens
 export const mockTokens: Token[] = [

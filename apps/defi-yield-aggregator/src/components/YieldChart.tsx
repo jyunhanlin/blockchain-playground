@@ -1,21 +1,20 @@
+import { format } from 'date-fns';
 import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
 } from 'recharts';
-
-import type { HistoricalData, YieldPool, Portfolio } from '@/types';
 import { formatCurrency, formatPercentage } from '@/lib/utils';
-import { format } from 'date-fns';
+import type { HistoricalData, Portfolio, YieldPool } from '@/types';
 
 interface YieldChartProps {
   data: HistoricalData[];

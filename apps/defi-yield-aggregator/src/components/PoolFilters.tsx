@@ -1,6 +1,6 @@
-import { Card, Button, Input, Label, Select } from '@blockchain-playground/ui';
-import { Filter, X, Search } from 'lucide-react';
-import type { FilterOptions, DeFiProtocol } from '@/types';
+import { Button, Card, Input, Label, Select } from '@blockchain-playground/ui';
+import { Filter, Search, X } from 'lucide-react';
+import type { DeFiProtocol, FilterOptions } from '@/types';
 import { ProtocolCategory, RiskLevel, SortOption } from '@/types';
 import { MultiSelect } from './MultiSelect';
 

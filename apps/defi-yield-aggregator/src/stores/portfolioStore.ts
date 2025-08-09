@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Portfolio, UserPosition, YieldPool } from '@/types';
 import { mockPortfolio, mockUserPositions } from '@/lib/mock-data';
+import type { Portfolio, UserPosition, YieldPool } from '@/types';
 
 interface PortfolioState {
   portfolio: Portfolio | null;

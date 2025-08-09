@@ -1,15 +1,15 @@
-import { Card, Badge, Button, Progress } from '@blockchain-playground/ui';
+import { Badge, Button, Card, Progress } from '@blockchain-playground/ui';
 import {
-  TrendingUp,
-  TrendingDown,
+  Clock,
   DollarSign,
   PieChart,
-  Clock,
-  Zap,
   RefreshCw,
+  TrendingDown,
+  TrendingUp,
+  Zap,
 } from 'lucide-react';
+import { cn, formatCurrency, formatPercentage } from '@/lib/utils';
 import type { Portfolio } from '@/types';
-import { formatCurrency, formatPercentage, cn } from '@/lib/utils';
 
 interface PortfolioOverviewProps {
   portfolio: Portfolio;

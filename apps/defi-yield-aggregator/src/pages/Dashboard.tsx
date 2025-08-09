@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { Card, Tabs, Button } from '@blockchain-playground/ui';
+import { Button, Card, Tabs } from '@blockchain-playground/ui';
 import { LayoutGrid, List } from 'lucide-react';
-import { usePoolsStore } from '@/stores/poolsStore';
-import { usePortfolioStore } from '@/stores/portfolioStore';
+import React, { useEffect } from 'react';
 import { PoolCard } from '@/components/PoolCard';
-import { PoolsTable } from '@/components/PoolsTable';
 import { PoolFilters } from '@/components/PoolFilters';
+import { PoolsTable } from '@/components/PoolsTable';
 import { PortfolioOverview } from '@/components/PortfolioOverview';
-import { YieldChart, MultiPoolComparison } from '@/components/YieldChart';
+import { MultiPoolComparison, YieldChart } from '@/components/YieldChart';
 import { mockHistoricalData } from '@/lib/mock-data';
 import { formatCurrency, formatPercentage } from '@/lib/utils';
+import { usePoolsStore } from '@/stores/poolsStore';
+import { usePortfolioStore } from '@/stores/portfolioStore';
 
 export function Dashboard() {
   const {

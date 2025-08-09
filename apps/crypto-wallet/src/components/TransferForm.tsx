@@ -192,8 +192,8 @@ export function TransferForm() {
             {isSending
               ? 'Sending Transaction...'
               : isConfirming
-              ? 'Confirming...'
-              : 'Send Transaction'}
+                ? 'Confirming...'
+                : 'Send Transaction'}
           </Button>
 
           {(sendError || confirmError) && (

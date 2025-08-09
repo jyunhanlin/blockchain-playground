@@ -1,10 +1,8 @@
 import { create } from 'zustand';
-
-import { SortOption } from '@/types';
-import type { YieldPool, DeFiProtocol, FilterOptions, YieldFarmingStats, RiskLevel } from '@/types';
-
-import { mockYieldPools, mockProtocols } from '@/lib/mock-data';
+import { mockProtocols, mockYieldPools } from '@/lib/mock-data';
 import { sortBy } from '@/lib/utils';
+import type { DeFiProtocol, FilterOptions, RiskLevel, YieldFarmingStats, YieldPool } from '@/types';
+import { SortOption } from '@/types';
 
 interface PoolsState {
   pools: YieldPool[];
@@ -96,14 +94,20 @@ export const usePoolsStore = create<PoolsState>((set, get) => ({
         totalTvl: pools.reduce((sum, pool) => sum + pool.tvl, 0),
         averageApy: pools.reduce((sum, pool) => sum + pool.apy, 0) / pools.length,
         topPerformers: sortBy(pools, 'apy', 'desc').slice(0, 5),
-        riskDistribution: pools.reduce((acc, pool) => {
-          acc[pool.riskLevel] = (acc[pool.riskLevel] || 0) + 1;
-          return acc;
-        }, {} as Record<RiskLevel, number>),
-        protocolDistribution: pools.reduce((acc, pool) => {
-          acc[pool.protocol.name] = (acc[pool.protocol.name] || 0) + 1;
-          return acc;
-        }, {} as Record<string, number>),
+        riskDistribution: pools.reduce(
+          (acc, pool) => {
+            acc[pool.riskLevel] = (acc[pool.riskLevel] || 0) + 1;
+            return acc;
+          },
+          {} as Record<RiskLevel, number>
+        ),
+        protocolDistribution: pools.reduce(
+          (acc, pool) => {
+            acc[pool.protocol.name] = (acc[pool.protocol.name] || 0) + 1;
+            return acc;
+          },
+          {} as Record<string, number>
+        ),
       };
 
       set({ stats });

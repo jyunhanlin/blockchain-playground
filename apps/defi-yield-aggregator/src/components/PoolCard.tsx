@@ -1,7 +1,7 @@
-import { Card, Badge, Button, Progress } from '@blockchain-playground/ui';
-import { Star, TrendingUp, Shield, Clock, ExternalLink } from 'lucide-react';
+import { Badge, Button, Card, Progress } from '@blockchain-playground/ui';
+import { Clock, ExternalLink, Shield, Star, TrendingUp } from 'lucide-react';
+import { cn, formatCurrency, formatPercentage, getApyColor, getRiskColor } from '@/lib/utils';
 import type { YieldPool } from '@/types';
-import { formatCurrency, formatPercentage, getRiskColor, getApyColor, cn } from '@/lib/utils';
 
 interface PoolCardProps {
   pool: YieldPool;

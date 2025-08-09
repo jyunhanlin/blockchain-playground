@@ -1,6 +1,6 @@
+import Big from 'big.js';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import Big from 'big.js';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -64,7 +64,7 @@ export function formatTokenAmount(
 export function calculateAPY(apr: number, compoundingFrequency = 365): number {
   // APY = (1 + APR/n)^n - 1
   // where n is the number of compounding periods per year
-  return Math.pow(1 + apr / compoundingFrequency, compoundingFrequency) - 1;
+  return (1 + apr / compoundingFrequency) ** compoundingFrequency - 1;
 }
 
 export function calculateCompoundGrowth(
@@ -72,7 +72,7 @@ export function calculateCompoundGrowth(
   apy: number,
   timeInYears: number
 ): number {
-  return principal * Math.pow(1 + apy, timeInYears);
+  return principal * (1 + apy) ** timeInYears;
 }
 
 export function calculateDailyRewards(principal: number, apy: number): number {
@@ -119,12 +119,15 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 export function groupBy<T, K extends keyof any>(array: T[], key: (item: T) => K): Record<K, T[]> {
-  return array.reduce((groups, item) => {
-    const group = key(item);
-    groups[group] = groups[group] || [];
-    groups[group].push(item);
-    return groups;
-  }, {} as Record<K, T[]>);
+  return array.reduce(
+    (groups, item) => {
+      const group = key(item);
+      groups[group] = groups[group] || [];
+      groups[group].push(item);
+      return groups;
+    },
+    {} as Record<K, T[]>
+  );
 }
 
 export function sortBy<T>(

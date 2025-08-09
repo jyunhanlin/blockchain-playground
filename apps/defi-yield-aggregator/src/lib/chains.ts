@@ -1,5 +1,5 @@
-import { http, createConfig } from 'wagmi';
-import { mainnet, arbitrum, polygon, optimism, base } from 'wagmi/chains';
+import { createConfig, http } from 'wagmi';
+import { arbitrum, base, mainnet, optimism, polygon } from 'wagmi/chains';
 
 export const config = createConfig({
   chains: [mainnet, arbitrum, polygon, optimism, base],

@@ -1,18 +1,18 @@
-import type React from 'react';
 import {
+  Badge,
+  Button,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-  Badge,
-  Button,
 } from '@blockchain-playground/ui';
-import { ArrowUpDown, TrendingUp, Shield, ExternalLink } from 'lucide-react';
+import { ArrowUpDown, ExternalLink, Shield, TrendingUp } from 'lucide-react';
+import type React from 'react';
+import { cn, formatCurrency, formatPercentage, getApyColor, getRiskColor } from '@/lib/utils';
 import type { YieldPool } from '@/types';
 import { SortOption } from '@/types';
-import { formatCurrency, formatPercentage, getRiskColor, getApyColor, cn } from '@/lib/utils';
 
 interface PoolsTableProps {
   pools: YieldPool[];

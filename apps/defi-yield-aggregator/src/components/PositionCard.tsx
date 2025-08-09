@@ -1,8 +1,8 @@
-import { Card, Badge, Button } from '@blockchain-playground/ui';
-import { TrendingUp, Calendar, Zap, DollarSign, Clock, Gift, ExternalLink } from 'lucide-react';
-import type { UserPosition } from '@/types';
-import { formatCurrency, formatPercentage, cn } from '@/lib/utils';
+import { Badge, Button, Card } from '@blockchain-playground/ui';
 import { formatDistanceToNow } from 'date-fns';
+import { Calendar, Clock, DollarSign, ExternalLink, Gift, TrendingUp, Zap } from 'lucide-react';
+import { cn, formatCurrency, formatPercentage } from '@/lib/utils';
+import type { UserPosition } from '@/types';
 
 interface PositionCardProps {
   position: UserPosition;
