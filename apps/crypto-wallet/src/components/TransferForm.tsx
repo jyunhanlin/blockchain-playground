@@ -111,56 +111,97 @@ export function TransferForm() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Send className="h-5 w-5" />
-          Send Transaction
+          <div className="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900 flex items-center justify-center">
+            <Send className="h-5 w-5 text-green-600 dark:text-green-400" />
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              Send Transaction
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Available:{' '}
+              <span className="font-semibold">
+                {formatBalance(balance?.formatted || '0')} {balance?.symbol}
+              </span>
+            </p>
+          </div>
         </CardTitle>
-        <CardDescription>
-          Available: {formatBalance(balance?.formatted || '0')} {balance?.symbol}
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="recipient" className="text-sm font-medium">
+          <div className="space-y-2">
+            <label
+              htmlFor="recipient"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Recipient Address
             </label>
             <Input
               id="recipient"
               type="text"
-              placeholder="0x..."
+              placeholder="0x1234...abcd"
               value={recipient}
               onChange={(e) => setRecipient(e.target.value)}
-              className="font-mono"
+              className="font-mono text-sm"
             />
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Enter the Ethereum address of the recipient
+            </p>
           </div>
 
-          <div>
-            <label htmlFor="amount" className="text-sm font-medium">
+          <div className="space-y-2">
+            <label
+              htmlFor="amount"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Amount ({balance?.symbol})
             </label>
-            <Input
-              id="amount"
-              type="number"
-              placeholder="0.0"
-              step="0.0001"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
+            <div className="relative">
+              <Input
+                id="amount"
+                type="number"
+                placeholder="0.0"
+                step="0.0001"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="pr-16"
+              />
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-500 dark:text-gray-400">
+                {balance?.symbol}
+              </div>
+            </div>
+            <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+              <span>Minimum: 0.0001 {balance?.symbol}</span>
+              <button
+                type="button"
+                onClick={() => setAmount(balance?.formatted || '0')}
+                className="text-blue-600 hover:underline dark:text-blue-400"
+              >
+                Use Max
+              </button>
+            </div>
           </div>
 
           <Button
             type="submit"
-            className="w-full"
+            size="lg"
+            className="w-full h-12 bg-green-600 hover:bg-green-700 text-white font-semibold shadow-sm hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isSending || isConfirming || !recipient || !amount}
           >
-            {(isSending || isConfirming) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {isSending ? 'Sending...' : isConfirming ? 'Confirming...' : 'Send Transaction'}
+            {(isSending || isConfirming) && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
+            {isSending
+              ? 'Sending Transaction...'
+              : isConfirming
+              ? 'Confirming...'
+              : 'Send Transaction'}
           </Button>
 
           {(sendError || confirmError) && (
-            <p className="text-sm text-destructive">
-              Error: {sendError?.message || confirmError?.message}
-            </p>
+            <div className="p-3 bg-red-50 border border-red-200 rounded-lg dark:bg-red-950/20 dark:border-red-800">
+              <p className="text-sm text-red-600 dark:text-red-400">
+                Error: {sendError?.message || confirmError?.message}
+              </p>
+            </div>
           )}
         </form>
       </CardContent>
